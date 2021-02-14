@@ -31832,13 +31832,15 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
       return _react.default.createElement("div", {
         className: "main-view"
-      }, selectedMovie ? _react.default.createElement(_movieView.MoiveView, {
+      }, selectedMovie ? _react.default.createElement(MovieView, {
         movie: selectedMovie
       }) : movies.map(function (movie) {
         return _react.default.createElement(_movieCard.MovieCard, {
-          key: movie._id
-        }, " movie=", movie, " onClick=", function (movie) {
-          return _this3.onMovieClick(movie);
+          key: movie._id,
+          movie: movie,
+          onClick: function onClick(movie) {
+            return _this3.onMovieClick(movie);
+          }
         });
       }));
     }
