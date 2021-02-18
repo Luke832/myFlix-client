@@ -31628,7 +31628,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
           return _onClick(movie);
         },
         className: "movie-card"
-      }, movie.title);
+      }, movie.Title);
     }
   }]);
 
@@ -31688,7 +31688,9 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   _createClass(MovieView, [{
     key: "render",
     value: function render() {
-      var movie = this.props.movie;
+      var _this$props = this.props,
+          movie = _this$props.movie,
+          leaveMovieView = _this$props.leaveMovieView;
       if (!movie) return null;
       return _react.default.createElement("div", {
         className: "movie-view"
@@ -31720,19 +31722,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       }, "Director: "), _react.default.createElement("span", {
         className: "value"
       }, movie.Director.Name)), _react.default.createElement("button", {
-        onClick: function (_onClick) {
-          function onClick() {
-            return _onClick.apply(this, arguments);
-          }
-
-          onClick.toString = function () {
-            return _onClick.toString();
-          };
-
-          return onClick;
-        }(function () {
-          return onClick();
-        })
+        onClick: leaveMovieView
       }, "Back"));
     }
   }]);
@@ -31792,8 +31782,17 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, MainView);
 
     _this = _super.call(this);
+
+    _this.leaveMovieView = function (e) {
+      e.preventDefault();
+
+      _this.setState({
+        selectedMovie: null
+      });
+    };
+
     _this.state = {
-      movies: null,
+      movies: [],
       selectedMovie: null
     };
     return _this;
@@ -31804,7 +31803,9 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      _axios.default.get('https://myawesomeflix.herokuapp.com/').then(function (response) {
+      _axios.default.get('https://myawesomeflix.herokuapp.com/movies').then(function (response) {
+        console.log(response);
+
         _this2.setState({
           movies: response.data
         });
@@ -31832,8 +31833,9 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
       return _react.default.createElement("div", {
         className: "main-view"
-      }, selectedMovie ? _react.default.createElement(MovieView, {
-        movie: selectedMovie
+      }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
+        movie: selectedMovie,
+        leaveMovieView: this.leaveMovieView
       }) : movies.map(function (movie) {
         return _react.default.createElement(_movieCard.MovieCard, {
           key: movie._id,
@@ -32011,7 +32013,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63448" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60156" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
