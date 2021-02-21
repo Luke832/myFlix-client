@@ -1,4 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+import { Card, Button } from 'react-bootstrap';
+
+import './movie-view.scss';
 
 export class MovieView extends React.Component {
 
@@ -15,25 +20,38 @@ export class MovieView extends React.Component {
 
     return (
       <div className="movie-view">
-        <img className="movie-poster" src={movie.ImagePath} />
-        <div className="movie-title">
-          <span className="label">Title: </span>
-          <span className="value">{movie.title}</span>
-        </div>
-        <div className="movie-description">
-          <span className="label">Description: </span>
-          <span className="value">{movie.description}</span>
-        </div>
-        <div className="movie-genre">
-          <span className="label">Genre: </span>
-          <span className="value">{movie.Genre.Name}</span>
-        </div>
-        <div className="movie-director">
-          <span className="label">Director: </span>
-          <span className="value">{movie.Director.Name}</span>
-        </div>
-        <button onClick={leaveMovieView}>Back</button>
+        <Card>
+          <Card.Img className="movie-poster" variant="top" src={movie.ImagePath} />
+          <Card.Title className="label-title">{movie.Title}</Card.Title>
+          <Card.Body>
+            <Card.Text className="label-body">{movie.Description}</Card.Text>
+            <Card.Text className="label-body">Director: {movie.Director.Name}</Card.Text>
+            <Card.Text className="label-body">Genre: {movie.Genre.Title}</Card.Text>
+          </Card.Body>
+          <Button className="return-button" variant="primary" onClick={leaveMovieView}>Back</Button>
+        </Card>
       </div>
     );
   }
 }
+
+MovieView.propTypes = {
+  movie: PropTypes.shape({
+    Title: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+    Genre: PropTypes.shape({
+      Title: PropTypes.string.isRequired,
+      Description: PropTypes.string.isRequired,
+    }),
+    Director: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+      Bio: PropTypes.string.isRequired,
+      Birth: PropTypes.string.isRequired,
+      Death: PropTypes.string,
+    }),
+    ImagePath: PropTypes.string.isRequired,
+    Actors: PropTypes.array.isRequired,
+    Featured: PropTypes.bool.isRequired,
+  }).isRequired,
+  onClick: PropTypes.func.isRequired
+};

@@ -1,8 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 
+import { LoginView } from '../login-view/login-view';
+import { RegisterView } from '../registration-view/registration-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+
+import './main-view.scss';
+
+import { Row, Col } from 'react-bootstrap';
 
 export class MainView extends React.Component {
   constructor() {
@@ -10,7 +16,9 @@ export class MainView extends React.Component {
 
     this.state = {
       movies: [],
-      selectedMovie: null
+      selectedMovie: null,
+      user: null,
+      register: null,
     };
   }
 
@@ -33,26 +41,48 @@ export class MainView extends React.Component {
     });
   }
 
+  onRegister(register) {
+    this.setState({
+      register
+    });
+  }
+
+  onLoggedIn(user) {
+    this.setState({
+      user
+    });
+  }
+
   leaveMovieView = e => {
     e.preventDefault()
     this.setState({ selectedMovie: null })
   }
 
   render() {
-    const { movies, selectedMovie } = this.state;
+    const { movies, selectedMovie, user, register } = this.state;
 
-    if (!movies) return <div className="main-view" />;
+    if (!register) return <RegisterView onRegister={(register) => this.onRegister(register)} />
+
+    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+
+    if (!movies) return <Row className="main-view justify-content-md-center" />;
 
     return (
-      <div className="main-view">
+      <Row className="main-view justify-content-md-center">
         {
           selectedMovie
-            ? <MovieView movie={selectedMovie} leaveMovieView={this.leaveMovieView} />
+            ? (
+              <Col md={8}>
+                <MovieView movie={selectedMovie} leaveMovieView={this.leaveMovieView} />
+              </Col>
+            )
             : movies.map(movie => (
-              <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)} />
+              <Col md={3}>
+                <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)} />
+              </Col>
             ))
         }
-      </div>
+      </Row>
     );
   }
 }
