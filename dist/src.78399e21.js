@@ -47861,9 +47861,20 @@ function LoginView(props) {
 
   var handleSubmit = function handleSubmit() {
     e.preventDefault();
-    console.log(username, password); // send a request to the server for authentication then call props.onLoggedIn(username)
+    console.log(username, password); // .then(response => {
+    //   <MainView />
+    // })
+    // .catch(e => {
+    //   console.log('user does not exist')
+    // });
+    // send a request to the server for authentication then call props.onLoggedIn(username)
 
     props.onLoggedIn(username);
+  };
+
+  var swapView = function swapView() {
+    e.preventDefault();
+    props.onRegister(register);
   };
 
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Form, {
@@ -47892,7 +47903,12 @@ function LoginView(props) {
     type: "button",
     variant: "primary",
     onClick: handleSubmit
-  }, "Submit")));
+  }, "Submit"), _react.default.createElement(_reactBootstrap.Button, {
+    className: "swap-button",
+    type: "button",
+    variant: "primary",
+    onClick: swapView
+  }, "Click Here to Register!")));
 }
 
 LoginView.propTypes = {
@@ -48514,7 +48530,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62723" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51925" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
