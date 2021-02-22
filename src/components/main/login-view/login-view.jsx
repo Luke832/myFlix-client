@@ -20,7 +20,7 @@ export function LoginView(props) {
     <React.Fragment>
       <Form className="login-form">
         <h1 className="login-header">Login Here:</h1>
-        <Form.Group controlID="formBasicText">
+        <Form.Group controlid="formBasicText">
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="text"
@@ -29,7 +29,7 @@ export function LoginView(props) {
             placeholder="Enter Username"
           />
         </Form.Group>
-        <Form.Group controlID="formBasicPassword">
+        <Form.Group controlid="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"

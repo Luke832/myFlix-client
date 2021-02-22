@@ -22,7 +22,7 @@ export function RegisterView(props) {
     <React.Fragment>
       <Form className="register-form">
         <h1 className="register-header">Register Here for My Awesome Flix!</h1>
-        <Form.Group controlID="formBasicText">
+        <Form.Group controlid="formBasicText">
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="text"
@@ -31,7 +31,7 @@ export function RegisterView(props) {
             placeholder="Enter Username"
           />
         </Form.Group>
-        <Form.Group controlID="formBasicEmail">
+        <Form.Group controlid="formBasicEmail">
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
@@ -40,7 +40,7 @@ export function RegisterView(props) {
             placeholder="Enter Email"
           />
         </Form.Group>
-        <Form.Group controlId="formBasicPassword">
+        <Form.Group controlid="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
@@ -49,7 +49,7 @@ export function RegisterView(props) {
             placeholder="Enter New Password"
           />
         </Form.Group>
-        <Form.Group controlID="formBasicConfirmPassword">
+        <Form.Group controlid="formBasicConfirmPassword">
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
             type="password"
@@ -58,7 +58,7 @@ export function RegisterView(props) {
             placeholder="Confirm Your Password"
           />
         </Form.Group>
-        <Form.Group controlID="formBasicBirthday">
+        <Form.Group controlid="formBasicBirthday">
           <Form.Label>Enter Birthday</Form.Label>
           <Form.Control
             type="date"

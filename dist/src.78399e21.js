@@ -47871,7 +47871,7 @@ function LoginView(props) {
   }, _react.default.createElement("h1", {
     className: "login-header"
   }, "Login Here:"), _react.default.createElement(_reactBootstrap.Form.Group, {
-    controlID: "formBasicText"
+    controlid: "formBasicText"
   }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "text",
     value: username,
@@ -47880,7 +47880,7 @@ function LoginView(props) {
     },
     placeholder: "Enter Username"
   })), _react.default.createElement(_reactBootstrap.Form.Group, {
-    controlID: "formBasicPassword"
+    controlid: "formBasicPassword"
   }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "password",
     value: password,
@@ -47979,7 +47979,7 @@ function RegisterView(props) {
   }, _react.default.createElement("h1", {
     className: "register-header"
   }, "Register Here for My Awesome Flix!"), _react.default.createElement(_reactBootstrap.Form.Group, {
-    controlID: "formBasicText"
+    controlid: "formBasicText"
   }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "text",
     value: username,
@@ -47988,7 +47988,7 @@ function RegisterView(props) {
     },
     placeholder: "Enter Username"
   })), _react.default.createElement(_reactBootstrap.Form.Group, {
-    controlID: "formBasicEmail"
+    controlid: "formBasicEmail"
   }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Email"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "email",
     value: email,
@@ -47997,7 +47997,7 @@ function RegisterView(props) {
     },
     placeholder: "Enter Email"
   })), _react.default.createElement(_reactBootstrap.Form.Group, {
-    controlId: "formBasicPassword"
+    controlid: "formBasicPassword"
   }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "password",
     value: password,
@@ -48006,7 +48006,7 @@ function RegisterView(props) {
     },
     placeholder: "Enter New Password"
   })), _react.default.createElement(_reactBootstrap.Form.Group, {
-    controlID: "formBasicConfirmPassword"
+    controlid: "formBasicConfirmPassword"
   }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Confirm Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "password",
     value: confirmPassword,
@@ -48015,7 +48015,7 @@ function RegisterView(props) {
     },
     placeholder: "Confirm Your Password"
   })), _react.default.createElement(_reactBootstrap.Form.Group, {
-    controlID: "formBasicBirthday"
+    controlid: "formBasicBirthday"
   }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Enter Birthday"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "date",
     value: birthday,
@@ -48383,12 +48383,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           movies = _this$state.movies,
           selectedMovie = _this$state.selectedMovie,
           user = _this$state.user,
-          register = _this$state.register;
-      if (!register) return _react.default.createElement(_registrationView.RegisterView, {
-        onRegister: function onRegister(register) {
-          return _this3.onRegister(register);
-        }
-      });
+          register = _this$state.register; // if (!register) return <RegisterView onRegister={(register) => this.onRegister(register)} />
+
       if (!user) return _react.default.createElement(_loginView.LoginView, {
         onLoggedIn: function onLoggedIn(user) {
           return _this3.onLoggedIn(user);
@@ -48518,7 +48514,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57351" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62723" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
