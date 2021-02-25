@@ -15,7 +15,7 @@ export function RegisterView(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(username, email, password, confirmPassword, birthday);
-    props.onRegister('test');
+    props.onRegister(username);
   };
 
   return (
@@ -68,6 +68,7 @@ export function RegisterView(props) {
           />
         </Form.Group>
         <Button type="button" variant="primary" onClick={handleSubmit}>Submit</Button>
+        <Button className="swap-button" type="button" variant="primary" onClick={props.toggleLoginRegister}>Click Here to Log In!</Button>
       </Form>
     </React.Fragment>
   );

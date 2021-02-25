@@ -12,20 +12,9 @@ export function LoginView(props) {
   const handleSubmit = () => {
     e.preventDefault();
     console.log(username, password);
-    // .then(response => {
-    //   <MainView />
-    // })
-    // .catch(e => {
-    //   console.log('user does not exist')
-    // });
     // send a request to the server for authentication then call props.onLoggedIn(username)
     props.onLoggedIn(username);
   };
-
-  const swapView = () => {
-    e.preventDefault();
-    props.onRegister(register);
-  }
 
   return (
     <React.Fragment>
@@ -50,7 +39,7 @@ export function LoginView(props) {
           />
         </Form.Group>
         <Button type="button" variant="primary" onClick={handleSubmit}>Submit</Button>
-        <Button className="swap-button" type="button" variant="primary" onClick={swapView}>Click Here to Register!</Button>
+        <Button className="swap-button" type="button" variant="primary" onClick={props.toggleLoginRegister}>Click Here to Register!</Button>
       </Form>
     </React.Fragment>
   );

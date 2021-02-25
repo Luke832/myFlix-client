@@ -47861,20 +47861,9 @@ function LoginView(props) {
 
   var handleSubmit = function handleSubmit() {
     e.preventDefault();
-    console.log(username, password); // .then(response => {
-    //   <MainView />
-    // })
-    // .catch(e => {
-    //   console.log('user does not exist')
-    // });
-    // send a request to the server for authentication then call props.onLoggedIn(username)
+    console.log(username, password); // send a request to the server for authentication then call props.onLoggedIn(username)
 
     props.onLoggedIn(username);
-  };
-
-  var swapView = function swapView() {
-    e.preventDefault();
-    props.onRegister(register);
   };
 
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Form, {
@@ -47907,7 +47896,7 @@ function LoginView(props) {
     className: "swap-button",
     type: "button",
     variant: "primary",
-    onClick: swapView
+    onClick: props.toggleLoginRegister
   }, "Click Here to Register!")));
 }
 
@@ -47987,7 +47976,7 @@ function RegisterView(props) {
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     console.log(username, email, password, confirmPassword, birthday);
-    props.onRegister('test');
+    props.onRegister(username);
   };
 
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Form, {
@@ -48043,7 +48032,12 @@ function RegisterView(props) {
     type: "button",
     variant: "primary",
     onClick: handleSubmit
-  }, "Submit")));
+  }, "Submit"), _react.default.createElement(_reactBootstrap.Button, {
+    className: "swap-button",
+    type: "button",
+    variant: "primary",
+    onClick: props.toggleLoginRegister
+  }, "Click Here to Log In!")));
 }
 
 RegisterView.propTypes = {
@@ -48345,11 +48339,19 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
     };
 
+    _this.toggleLoginRegister = function (e) {
+      e.preventDefault();
+
+      _this.setState({
+        register: !_this.state.register
+      });
+    };
+
     _this.state = {
       movies: [],
       selectedMovie: null,
       user: null,
-      register: null
+      register: false
     };
     return _this;
   }
@@ -48378,9 +48380,9 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "onRegister",
-    value: function onRegister(register) {
+    value: function onRegister(user) {
       this.setState({
-        register: register
+        user: user
       });
     }
   }, {
@@ -48399,9 +48401,15 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           movies = _this$state.movies,
           selectedMovie = _this$state.selectedMovie,
           user = _this$state.user,
-          register = _this$state.register; // if (!register) return <RegisterView onRegister={(register) => this.onRegister(register)} />
-
-      if (!user) return _react.default.createElement(_loginView.LoginView, {
+          register = _this$state.register;
+      if (register && !user) return _react.default.createElement(_registrationView.RegisterView, {
+        toggleLoginRegister: this.toggleLoginRegister,
+        onRegister: function onRegister(register) {
+          return _this3.onRegister(register);
+        }
+      });
+      if (!register && !user) return _react.default.createElement(_loginView.LoginView, {
+        toggleLoginRegister: this.toggleLoginRegister,
         onLoggedIn: function onLoggedIn(user) {
           return _this3.onLoggedIn(user);
         }
@@ -48418,9 +48426,9 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         leaveMovieView: this.leaveMovieView
       })) : movies.map(function (movie) {
         return _react.default.createElement(_reactBootstrap.Col, {
-          md: 3
+          md: 3,
+          key: movie._id
         }, _react.default.createElement(_movieCard.MovieCard, {
-          key: movie._id,
           movie: movie,
           onClick: function onClick(movie) {
             return _this3.onMovieClick(movie);
@@ -48530,7 +48538,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51925" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56337" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
